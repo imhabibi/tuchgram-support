@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DashboardActivity"
+    android:orientation="vertical"
+    android:layoutDirection="rtl"
+    android:background="#f3f3f3">
+
+    <androidx.appcompat.widget.Toolbar
+        android:elevation="3dp"
+        android:background="#F0F0F0"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/toolbar"/>
+    <TextView
+        android:id="@+id/dashboardTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="داشبود اکتیویتی"
+        android:layout_gravity="center"/>
+</LinearLayout>

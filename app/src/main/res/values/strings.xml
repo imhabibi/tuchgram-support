@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Tuchgram</string>
+
+
+    <!--    sharedPreferencesApi Config-->
+    <string name="app_sharedPreferencesApi">com.yadishot.tuchgram.app_sharedPreferencesApi</string>
+    <string name="app_sharedPreferencesApi_user_id">com.yadishot.tuchgram.app_sharedPreferencesApi_user_id</string>
+    <string name="app_sharedPreferencesApi_fullname">com.yadishot.tuchgram.app_sharedPreferencesApi_fullname</string>
+    <string name="app_sharedPreferencesApi_user_Loginstatus">com.yadishot.tuchgram.app_sharedPreferencesApi_Login_status</string>
+    <string name="app_sharedPreferencesApi_user_phoneNumber">com.yadishot.tuchgram.app_sharedPreferencesApi_phoneNumber</string>
+    <string name="app_sharedPreferencesApi_userLogin_Num">com.yadishot.tuchgram.app_sharedPreferencesApi_userLogin_Num</string>
+</resources>
