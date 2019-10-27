@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DashboardActivity"
-    android:orientation="vertical"
     android:layoutDirection="rtl"
     android:background="#f3f3f3">
 
@@ -14,12 +13,48 @@
         android:background="#F0F0F0"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:id="@+id/toolbar"/>
+        android:id="@+id/toolbar"
+        android:layout_alignParentTop="true"/>
+    <FrameLayout
+        android:id="@+id/frameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/bottomNavigation"/>
     <TextView
+        android:layout_below="@id/toolbar"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/dashboardTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        android:text="داشبود اکتیویتی"
-        android:layout_gravity="center"/>
-</LinearLayout>
+        android:text="درخواست های پشتیبانی"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_below="@id/dashboardTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="هیچ درخواستی وجود ندارد!"
+        android:background="#60C7C7C7"
+        android:padding="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:visibility="gone"
+        android:id="@+id/requestDined"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"
+        android:layout_below="@id/dashboardTxt"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/menu"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

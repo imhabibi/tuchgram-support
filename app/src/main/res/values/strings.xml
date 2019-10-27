@@ -9,4 +9,7 @@
     <string name="app_sharedPreferencesApi_user_Loginstatus">com.yadishot.tuchgram.app_sharedPreferencesApi_Login_status</string>
     <string name="app_sharedPreferencesApi_user_phoneNumber">com.yadishot.tuchgram.app_sharedPreferencesApi_phoneNumber</string>
     <string name="app_sharedPreferencesApi_userLogin_Num">com.yadishot.tuchgram.app_sharedPreferencesApi_userLogin_Num</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
