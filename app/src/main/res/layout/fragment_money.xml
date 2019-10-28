@@ -2,6 +2,78 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF50">
+    android:background="#f3f3f3"
+    android:layoutDirection="rtl">
 
+    <TextView
+        android:id="@+id/gavSandog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="گاو صندوق شما"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+    <LinearLayout
+        android:id="@+id/moneyGavSandog"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/gavSandog"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/moneyDropEnough"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="23sp"
+            android:layout_below="@id/gavSandog"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تومان"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/invitedWithYou"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/moneyGavSandog"
+        android:layout_marginTop="26dp"
+        android:elevation="4dp"
+        android:text="معرفی شوندگان توسط شما"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/khat"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/invitedWithYou"
+        android:layout_width = "fill_parent"
+        android:layout_height="1dp"
+        android:background="#979797" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/khat"
+        android:layout_above="@id/btnDropMoneyHelp"
+        android:id="@+id/recyclerView"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_customer"
+        android:text="چگونه درآمد کسب کنم؟"
+        android:textColor="#fff"
+        android:id="@+id/btnDropMoneyHelp"/>
 </RelativeLayout>

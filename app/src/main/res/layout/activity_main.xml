@@ -27,7 +27,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="+98 00000"
+                android:hint="+98"
                 android:id="@+id/txtNumber"
                 android:background="@drawable/edt_customer"
                 android:padding="15dp"

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -40,24 +41,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 
 public class DashboardActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    private TextView textView, requestDined;
+    private Toolbar toolbar;
+//    private TextView textView, requestDined;
     private SharedPreferencesApi sharedPreferencesApi;
     private BottomNavigationView bottomNavigationView;
-    // we need to that for fetch support requests and config recyclerView
-    private RequestRecyclerViewAdapter requestRecyclerViewAdapter;
-    private List<RequestModel> requestSupprotModel = new ArrayList<>();
-    private RecyclerView recyclerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         findByViewIds();
-        configureRecyclerView();
         toolbar.setTitle("پنل کاربری");
         sharedPreferencesApi = new SharedPreferencesApi(DashboardActivity.this);
 
@@ -70,21 +67,14 @@ public class DashboardActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frameContainer,
                 new SupportFragment()).commit();
     }
-
-    private void configureRecyclerView() {
-        requestRecyclerViewAdapter = new RequestRecyclerViewAdapter(getApplicationContext(), requestSupprotModel);
-        recyclerView.setLayoutManager(new LinearLayoutManager(DashboardActivity.this));
-        recyclerView.setAdapter(requestRecyclerViewAdapter);
-        fetchSupportRequests();
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-
     private void findByViewIds() {
         toolbar = findViewById(R.id.toolbar);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        requestDined = findViewById(R.id.requestDined);
-        textView = findViewById(R.id.dashboardTxt);
-        recyclerView = findViewById(R.id.recyclerView);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -112,69 +102,4 @@ public class DashboardActivity extends AppCompatActivity {
                     return true;
                 }
             };
-
-    private void fetchSupportRequests() {
-        String support_requests = "https://horse-breeding-danaei.ir/api/fetchs.php";
-
-        StringRequest request = new StringRequest(Request.Method.POST, support_requests, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                // fetch user support requests...
-                try {
-                    requestDined.setVisibility(View.GONE);
-                    recyclerView.setVisibility(View.VISIBLE);
-                    JSONArray jsonArray = new JSONArray(response);
-                    requestSupprotModel.clear();
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String projectName = jsonObject.getString("project_name");
-                        String projectDecs = jsonObject.getString("msg");
-                        String projectTime = jsonObject.getString("time");
-
-                        // set call back res in model items getter and setter
-                        RequestModel model = new RequestModel();
-                        model.setProjectName(projectName);
-                        model.setProjectDescription(projectDecs);
-                        model.setProjectTime(projectTime);
-                        requestSupprotModel.add(model);
-                        requestRecyclerViewAdapter.notifyDataSetChanged();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(DashboardActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("user_id", sharedPreferencesApi.readUserId());
-                return params;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(request);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                textView.setText("menu settings clicked");
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
